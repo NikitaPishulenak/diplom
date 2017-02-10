@@ -1,0 +1,47 @@
+/* 
+    Document   : printer.css
+    Created on : 27.03.2012, 1:52:14
+    Author     : guilder
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+body{
+    background-color:transparent;
+}
+.fixed-menu
+{
+    display:none;
+}
+.ground
+{
+    
+    margin: 0px;
+    padding:0px;
+    background-color:transparent;
+    border:none;
+}
+.page
+{
+    
+    margin: 0px;
+    padding:0px;
+    background-color:transparent;
+    border:none;
+}
+.temp_chain
+{
+    display: none;
+}
+.real_chain,#frm
+{
+    display:none;
+}
+.ssfs
+{
+    overflow: visible;
+}

@@ -1,0 +1,137 @@
+<?php
+session_start();
+include 'config.php';
+include 'core/db.php';
+include 'core/core.php';
+include 'core/ui.php';
+
+set_time_limit(0);
+
+  $crttmp['control.acls']='Права доступа';
+  $crttmp['person.pop_chain']='';
+  $crttmp['person.advsearch']='Улучшеный поиск';
+  $crttmp['report.analog']='Аналог';
+  $crttmp['analog.test']='Аналог';
+  $crttmp['api']='АПИ';
+  $crttmp['control.applog']='Лог';
+  $crttmp['person.average']='Сведения о ЦТ и среднем балле';
+  $crttmp['report.ball']='Проходной балл';
+  $crttmp['control.benefits']='Льготы';
+  $crttmp['control.certificates']='Сертификаты';
+  $crttmp['person.change']='Смена конкурса';
+  $crttmp['person.changes']='Смены конкурса';
+  $crttmp['person.close']='Закрыть дело';
+  $crttmp['control.communitys']='Общественные организации';
+  $crttmp['control']='Управление';          
+  $crttmp['control.countrys']='Страны';
+  $crttmp['control.courses']='Курсы';
+  $crttmp['person.create']='Новое дело';
+  $crttmp['control.ct_info_load']='Загрузка данных ЦТ';
+  $crttmp['control.cts']='';
+  $crttmp[ 'debug']='Отладка';
+  $crttmp['person.defaults']='Значения по умолчанию';
+  $crttmp[ 'debug.desql']='SQL';
+  $crttmp['control.devnull']='Убивать';
+  $crttmp['control.devtest']='Тестирование';
+  $crttmp['control.devzero']='Занулить';
+  $crttmp['report.discrete']='Дискрет';
+  $crttmp['report.discrete_raw']='Дискрет с номерами дел';
+  $crttmp['control.dual_modes']='Доп. заявления';
+  $crttmp[ 'person.edit']='Правка дела';
+  $crttmp['control.edu_forms']='Формы обучения';
+  $crttmp['control.educations']='Образования';
+  $crttmp['person.envelop']='Конверт';
+  $crttmp['control.experiences']='Стаж';
+  $crttmp['person.export']='Экспорт';
+  $crttmp['control.facultys']='Факультеты';
+  $crttmp['control.field_macros']='Макрос поля';
+  
+  $crttmp['files']='Файлы';
+  $crttmp['control.grades']='Награды';
+  $crttmp[ 'person.groupedit']='Групповое редактирование';
+  $crttmp['control.groups']='Группы пользователей';
+  $crttmp[ 'person.history']='История дела';
+  $crttmp['control.hostels']='Общежитие';
+  $crttmp['index']='Главная';
+  $crttmp['control.inst_ranks']='Ранги УО';
+  $crttmp['control.institutions']='Типы УО';
+  $crttmp['control.inventory_doc']='Документы описи отдела кадров';
+  $crttmp['control.inventory_docs']='';
+  $crttmp['control.inventory_wizard']='';
+  $crttmp['control.keys']='Ключи доступа';
+  $crttmp['control.lang_levels']='Уровни иностранного';
+  $crttmp['control.languages']='Языки';
+  $crttmp['person.listcase']='Опись папки';
+  $crttmp['control.macro']='';
+  $crttmp['control.militarys']='Военнообязанность';
+  $crttmp['control.months']='Месяцы';
+  $crttmp['person.move']='Перевод';
+  $crttmp['control.nametowns']='';
+  $crttmp['report.analog']='Аналог';
+  $crttmp[ 'report.note']='Справка';
+  $crttmp['note.test']='';
+  $crttmp['person.notification']='Извещение';
+  $crttmp['control.others']='Другие';
+  $crttmp['phones']='Телефоны';
+  $crttmp['control.pipelines']='Передачи дел';
+  $crttmp['control.plancells']='План целевых';
+  $crttmp[ 'control.planform']='План приёма';
+  $crttmp['person.pool']='Пул брони';
+  $crttmp['person.pop_chain']='';
+  $crttmp['person.precreate']='Предсоздание';
+  $crttmp['control.presidents']='Лауреаты';
+  $crttmp['person.print']='Печать';
+  $crttmp['person.qs']='Быстрый поиск';
+  $crttmp['person.query']='Запросы';
+  $crttmp['control.querys']='Запросы';
+  $crttmp['person.rakeup']='Подбор передачи';
+  $crttmp['real_chain.view']='';
+  $crttmp['control.reasoffs']='Причины окончания конкурса';
+  $crttmp['control.reasons']='Причины начала конкурса';
+  $crttmp['person.receipt']='Расписка';
+  $crttmp['control.regions']='Области';
+  $crttmp['control.republics']='Победители республики';
+  $crttmp['control.savefields']='Сохранённые поля экспорта';
+  $crttmp['person.search']='Поиск';
+  $crttmp['secretary']='Секретарская';
+  $crttmp['control.settings']='Настройки';
+  $crttmp['control.sexs']='Пол';
+  $crttmp[ 'control.smalltowns']='Малые города';
+  $crttmp['control.stalkers']='Загрязнённые НП';
+  $crttmp['control.states']='Состояния дела';
+  $crttmp['control.students']='Состояние зачисления';
+  $crttmp['control.subdivs']='Типы городов';
+  $crttmp['control.submissions']='Подчинение пользователей';
+  $crttmp[ 'person.submitted']='Поданные цифры';
+  $crttmp['control.targetcells']='Целевые конкурсы';
+  $crttmp['control.targets']='Конкурсы';
+  $crttmp['control.targettypes']='Типы конкурсов';
+  $crttmp['control.tasks']='Таски';
+  $crttmp[ 'temp_chain.view']='';
+  $crttmp['control.time_forms']='Формы получения';
+  $crttmp['person.transmit']='Передача дела';
+  $crttmp['control.trys']='Попытки';
+  $crttmp['control.users']='Пользователи';
+  $crttmp['person.view']='Просмотр';
+  $crttmp[ 'control.voenmeds']='Абитуриенты ВМ';
+  $crttmp[ 'person.walking']='Хождения';
+  $crttmp['control.wouldbes']='Потенциальность';
+  $crttmp['control.xclasss']='Штрихкласс';
+
+  $sql="TRUNCATE `db_keys`";
+  $r=mysql_query($sql) or debug($sql,  mysql_error());
+  
+  $sql="INSERT INTO `db_keys` VALUES ('','*','Wildcard') ";
+  $r=mysql_query($sql) or debug($sql,  mysql_error());
+  
+  foreach($crttmp as $k=>$v)
+  {
+      $k=db_esc($k);
+      $v=db_esc($v);
+    $sql="INSERT INTO `db_keys` VALUES ('','$k','$v') ";
+    $r=mysql_query($sql) or debug($sql,  mysql_error());
+      
+  }
+  
+  ui_sp('Обновление ключей доступа прошло успешно.');
+  ui_ep();

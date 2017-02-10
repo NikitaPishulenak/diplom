@@ -1,0 +1,29 @@
+.fixed-menu
+{
+    position: relative;
+    float:left;
+    width:125px;
+    top: 5px;
+}
+.ground
+{
+    margin-left: 130px;
+    
+}
+.temp_chain
+{
+    position: absolute;
+    top:5px;
+    left:1150px;
+    width: 100px;
+}
+.real_chain
+{
+    top:5px;
+    left:1202px;
+    position: absolute;
+    width:60px;
+}
+body{
+    
+}

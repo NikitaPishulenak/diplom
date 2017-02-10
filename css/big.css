@@ -1,0 +1,53 @@
+/* 
+    Document   : big
+    Created on : 24.07.2013, 2:42:46
+    Author     : guilder
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+#ballcell 
+{
+    font-size:14pt !important;
+    border:1px solid black !important;
+}
+
+#ballcell th
+{
+    font-size:12pt !important;
+    border:1px solid black !important;
+    font-weight:normal;
+}
+
+#ballcell .rep_td
+{
+    font-weight: bolder;
+}
+
+#ballgens 
+{
+    font-size:14pt !important;
+    border:1px solid black !important;
+    
+}
+
+#ballgens th
+{
+    font-size:12pt !important;
+    border:1px solid black !important;
+    font-weight:normal;
+}
+
+#ballgens .rep_td
+{
+    font-weight: bolder;
+}

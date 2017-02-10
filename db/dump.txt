@@ -1,0 +1,563 @@
+-- phpMyAdmin SQL Dump
+-- version 3.2.3
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Mar 12, 2012 at 07:05 AM
+-- Server version: 5.1.40
+-- PHP Version: 5.3.3
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `admx`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_acl`
+--
+
+CREATE TABLE IF NOT EXISTS `db_acl` (
+  `id_acl` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `key_id` int(11) NOT NULL,
+  PRIMARY KEY (`id_acl`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `db_acl`
+--
+
+INSERT INTO `db_acl` (`id_acl`, `group_id`, `key_id`) VALUES
+(1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_balls`
+--
+
+CREATE TABLE IF NOT EXISTS `db_balls` (
+  `id_balls` int(11) NOT NULL AUTO_INCREMENT,
+  `person_id` int(11) NOT NULL,
+  `sum` int(11) NOT NULL,
+  PRIMARY KEY (`id_balls`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `db_balls`
+--
+
+INSERT INTO `db_balls` (`id_balls`, `person_id`, `sum`) VALUES
+(1, 1, 85),
+(2, 1, 23),
+(3, 1, 54),
+(4, 1, 53),
+(5, 2, 60),
+(6, 2, 60),
+(7, 2, 60),
+(8, 2, 60);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_country`
+--
+
+CREATE TABLE IF NOT EXISTS `db_country` (
+  `id_country` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `sname` varchar(60) NOT NULL,
+  `abbr` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_country`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=18446744073709551615 ;
+
+--
+-- Dumping data for table `db_country`
+--
+
+INSERT INTO `db_country` (`id_country`, `name`, `sname`, `abbr`) VALUES
+(1, 'Республика Беларусь', 'Беларусь', 'РБ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_ef`
+--
+
+CREATE TABLE IF NOT EXISTS `db_ef` (
+  `id_ef` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `sname` varchar(60) NOT NULL,
+  `abbr` varchar(11) NOT NULL,
+  PRIMARY KEY (`id_ef`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `db_ef`
+--
+
+INSERT INTO `db_ef` (`id_ef`, `name`, `sname`, `abbr`) VALUES
+(1, 'Бюджетная', 'Бюдж', 'Б'),
+(2, 'Платная', 'Платн', 'П');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_faculty`
+--
+
+CREATE TABLE IF NOT EXISTS `db_faculty` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `sname` varchar(60) NOT NULL,
+  `abbr` varchar(60) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `db_faculty`
+--
+
+INSERT INTO `db_faculty` (`id`, `name`, `sname`, `abbr`) VALUES
+(1, 'Лечебный', 'Леч', 'Л'),
+(2, 'Медико-профилактический', 'Мед-проф', 'МФ'),
+(3, 'Педиатрический', 'Пед', 'П'),
+(4, 'Стоматологический', 'Стом', 'С');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_groups`
+--
+
+CREATE TABLE IF NOT EXISTS `db_groups` (
+  `id_group` int(11) NOT NULL AUTO_INCREMENT,
+  `groupkey` varchar(60) NOT NULL,
+  `groupname` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_group`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `db_groups`
+--
+
+INSERT INTO `db_groups` (`id_group`, `groupkey`, `groupname`) VALUES
+(1, '', 'Администраторы'),
+(2, '', 'Пользователи');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_keys`
+--
+
+CREATE TABLE IF NOT EXISTS `db_keys` (
+  `id_keys` int(11) NOT NULL AUTO_INCREMENT,
+  `keystring` varchar(60) NOT NULL,
+  `keyname` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_keys`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `db_keys`
+--
+
+INSERT INTO `db_keys` (`id_keys`, `keystring`, `keyname`) VALUES
+(1, '*', 'wildcard'),
+(2, 'person.create', 'Создание дела'),
+(3, 'person.view', 'Просмотр дела'),
+(4, 'person.edit', 'Правка дела'),
+(5, 'person.print', 'Печать дела'),
+(6, 'person.search', 'Поиск дела'),
+(7, 'control.users', 'Управление пользователями');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_n`
+--
+
+CREATE TABLE IF NOT EXISTS `db_n` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `person_id` int(11) NOT NULL,
+  `faculty` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `db_n`
+--
+
+INSERT INTO `db_n` (`id`, `person_id`, `faculty`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 1),
+(4, 2, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_person`
+--
+
+CREATE TABLE IF NOT EXISTS `db_person` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `surname` varchar(60) NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `midname` varchar(60) NOT NULL,
+  `auid` int(11) NOT NULL,
+  `cuid` int(11) NOT NULL,
+  `vuid` int(11) NOT NULL,
+  `xuid` int(11) NOT NULL,
+  `faculty` int(11) NOT NULL,
+  `edu_form` int(11) NOT NULL,
+  `target` int(11) NOT NULL,
+  `target_type` int(11) NOT NULL,
+  `target_cell` int(11) NOT NULL,
+  `out_edu_form` int(11) NOT NULL,
+  `out_target` int(11) NOT NULL,
+  `out_target_type` int(11) NOT NULL,
+  `out_target_cell` int(11) NOT NULL,
+  `sex` int(11) NOT NULL,
+  `serial` varchar(60) NOT NULL,
+  `private` varchar(60) NOT NULL,
+  `natio` int(11) NOT NULL,
+  `country` int(11) NOT NULL,
+  `region_by` int(11) NOT NULL,
+  `region_text` int(11) NOT NULL,
+  `area` int(11) NOT NULL,
+  `subdiv` int(11) NOT NULL,
+  `city_name` varchar(60) NOT NULL,
+  `zip` varchar(10) NOT NULL,
+  `street` varchar(100) NOT NULL,
+  `total` int(11) NOT NULL,
+  `region_cell` int(11) NOT NULL,
+  `state_id` int(11) NOT NULL,
+  `atime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ctime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `vtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `xtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `time_form_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `db_person`
+--
+
+INSERT INTO `db_person` (`id`, `surname`, `name`, `midname`, `auid`, `cuid`, `vuid`, `xuid`, `faculty`, `edu_form`, `target`, `target_type`, `target_cell`, `out_edu_form`, `out_target`, `out_target_type`, `out_target_cell`, `sex`, `serial`, `private`, `natio`, `country`, `region_by`, `region_text`, `area`, `subdiv`, `city_name`, `zip`, `street`, `total`, `region_cell`, `state_id`, `atime`, `ctime`, `vtime`, `xtime`, `time_form_id`) VALUES
+(1, 'Иванов', 'Иван', 'Иванович', 0, 1, 0, 1, 1, 1, 3, 1, 0, 0, 0, 0, 0, 1, '123456', '789', 1, 1, 7, 0, 0, 0, '', '', '', 0, 0, 2, '2012-03-12 05:48:34', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '2012-03-12 04:32:15', 1),
+(2, 'Сидоров', 'Иван', 'Палыч', 1, 1, 1, 0, 1, 1, 3, 1, 0, 0, 0, 0, 0, 1, '123456', '123', 1, 1, 7, 0, 0, 0, '', '', '', 0, 0, 1, '2012-03-12 05:40:12', '0000-00-00 00:00:00', '2012-03-12 04:37:46', '0000-00-00 00:00:00', 1),
+(3, 'Петров', 'Иван', 'Михалыч', 0, 1, 0, 0, 1, 1, 3, 1, 0, 0, 0, 0, 0, 1, '123', '123', 1, 1, 7, 0, 0, 0, '', '', '', 0, 0, 4, '2012-03-12 04:05:48', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
+(6, 'Васильев', '', '', 1, 1, 1, 1, 1, 1, 3, 1, 0, 0, 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, '', '', '', 0, 0, 2, '2012-03-12 07:57:30', '2012-03-12 07:47:18', '2012-03-12 07:47:28', '2012-03-12 07:57:30', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_plancell`
+--
+
+CREATE TABLE IF NOT EXISTS `db_plancell` (
+  `id_plancell` int(11) NOT NULL AUTO_INCREMENT,
+  `faculty_id` int(11) NOT NULL,
+  `targetcell_id` int(11) NOT NULL,
+  `region_id` int(11) NOT NULL,
+  `plan` int(11) NOT NULL,
+  PRIMARY KEY (`id_plancell`),
+  UNIQUE KEY `d` (`faculty_id`,`targetcell_id`,`region_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=57 ;
+
+--
+-- Dumping data for table `db_plancell`
+--
+
+INSERT INTO `db_plancell` (`id_plancell`, `faculty_id`, `targetcell_id`, `region_id`, `plan`) VALUES
+(1, 1, 1, 1, 0),
+(2, 1, 1, 2, 0),
+(3, 1, 1, 3, 0),
+(4, 1, 1, 4, 0),
+(5, 1, 1, 5, 0),
+(6, 1, 1, 6, 0),
+(7, 1, 1, 7, 0),
+(8, 1, 2, 1, 0),
+(9, 1, 2, 2, 0),
+(10, 1, 2, 3, 0),
+(11, 1, 2, 4, 0),
+(12, 1, 2, 5, 0),
+(13, 1, 2, 6, 0),
+(14, 1, 2, 7, 0),
+(15, 2, 1, 1, 0),
+(16, 2, 1, 2, 0),
+(17, 2, 1, 3, 0),
+(18, 2, 1, 4, 0),
+(19, 2, 1, 5, 0),
+(20, 2, 1, 6, 0),
+(21, 2, 1, 7, 0),
+(22, 2, 2, 1, 0),
+(23, 2, 2, 2, 0),
+(24, 2, 2, 3, 0),
+(25, 2, 2, 4, 0),
+(26, 2, 2, 5, 0),
+(27, 2, 2, 6, 0),
+(28, 2, 2, 7, 0),
+(29, 3, 1, 1, 0),
+(30, 3, 1, 2, 0),
+(31, 3, 1, 3, 0),
+(32, 3, 1, 4, 0),
+(33, 3, 1, 5, 0),
+(34, 3, 1, 6, 0),
+(35, 3, 1, 7, 0),
+(36, 3, 2, 1, 0),
+(37, 3, 2, 2, 0),
+(38, 3, 2, 3, 0),
+(39, 3, 2, 4, 0),
+(40, 3, 2, 5, 0),
+(41, 3, 2, 6, 0),
+(42, 3, 2, 7, 0),
+(43, 4, 1, 1, 0),
+(44, 4, 1, 2, 0),
+(45, 4, 1, 3, 0),
+(46, 4, 1, 4, 0),
+(47, 4, 1, 5, 0),
+(48, 4, 1, 6, 0),
+(49, 4, 1, 7, 0),
+(50, 4, 2, 1, 0),
+(51, 4, 2, 2, 0),
+(52, 4, 2, 3, 0),
+(53, 4, 2, 4, 0),
+(54, 4, 2, 5, 0),
+(55, 4, 2, 6, 0),
+(56, 4, 2, 7, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_region`
+--
+
+CREATE TABLE IF NOT EXISTS `db_region` (
+  `id_region` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `sname` varchar(60) NOT NULL,
+  `abbr` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_region`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `db_region`
+--
+
+INSERT INTO `db_region` (`id_region`, `name`, `sname`, `abbr`) VALUES
+(1, 'брест', '', 'Бр'),
+(2, 'витебск', '', 'В'),
+(3, 'гомель', '', 'Г'),
+(4, 'гродно', '', 'Гр'),
+(5, 'минск', '', 'Мн'),
+(6, 'могилев', '', 'Мо'),
+(7, 'минск', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_savefield`
+--
+
+CREATE TABLE IF NOT EXISTS `db_savefield` (
+  `id_savefield` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(60) NOT NULL,
+  `fields` text NOT NULL,
+  PRIMARY KEY (`id_savefield`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=18446744073709551615 ;
+
+--
+-- Dumping data for table `db_savefield`
+--
+
+INSERT INTO `db_savefield` (`id_savefield`, `user_id`, `name`, `fields`) VALUES
+(1, 1, 'qwe', 'surname|name|midname');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_sex`
+--
+
+CREATE TABLE IF NOT EXISTS `db_sex` (
+  `id_sex` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `sname` varchar(60) NOT NULL,
+  `abbr` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_sex`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `db_sex`
+--
+
+INSERT INTO `db_sex` (`id_sex`, `name`, `sname`, `abbr`) VALUES
+(1, 'Мужской', 'Муж', 'М'),
+(2, 'Женский', 'Жен', 'Ж');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_state`
+--
+
+CREATE TABLE IF NOT EXISTS `db_state` (
+  `id_state` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `sname` varchar(60) NOT NULL,
+  `abbr` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_state`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `db_state`
+--
+
+INSERT INTO `db_state` (`id_state`, `name`, `sname`, `abbr`) VALUES
+(1, 'Открыто', 'Откр.', 'О'),
+(2, 'Закрыто', 'Закр.', 'З'),
+(3, 'Invalid', 'Inv', 'I'),
+(4, 'Непроверенное', 'НП', 'НП');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_subdiv`
+--
+
+CREATE TABLE IF NOT EXISTS `db_subdiv` (
+  `id_subdiv` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `sname` varchar(60) NOT NULL,
+  `abbr` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_subdiv`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `db_subdiv`
+--
+
+INSERT INTO `db_subdiv` (`id_subdiv`, `name`, `sname`, `abbr`) VALUES
+(1, 'Областной центр', '', ''),
+(2, 'Город', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_target`
+--
+
+CREATE TABLE IF NOT EXISTS `db_target` (
+  `id_target` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `sname` varchar(60) NOT NULL,
+  `abbr` varchar(11) NOT NULL,
+  PRIMARY KEY (`id_target`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `db_target`
+--
+
+INSERT INTO `db_target` (`id_target`, `name`, `sname`, `abbr`) VALUES
+(1, 'Целевой', 'Цел', 'Ц'),
+(2, 'Без испытаний', 'Без.Исп.', 'БИ'),
+(3, 'Общий', 'Общ', 'О'),
+(4, 'Платный, вне конкурса', 'Платн.в/к', 'ПВК'),
+(5, 'бюджет, МО', 'БМО', 'БМО');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_targetcell`
+--
+
+CREATE TABLE IF NOT EXISTS `db_targetcell` (
+  `id_targetcell` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `sname` varchar(60) NOT NULL,
+  `abbr` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_targetcell`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `db_targetcell`
+--
+
+INSERT INTO `db_targetcell` (`id_targetcell`, `name`, `sname`, `abbr`) VALUES
+(1, 'Общий целевой', '', ''),
+(2, 'РУП "Фармация"', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_targettype`
+--
+
+CREATE TABLE IF NOT EXISTS `db_targettype` (
+  `id_targettype` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `sname` varchar(60) NOT NULL,
+  `abbr` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_targettype`)
+) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `db_targettype`
+--
+
+INSERT INTO `db_targettype` (`id_targettype`, `name`, `sname`, `abbr`) VALUES
+(1, 'Городской', 'Город', 'Г'),
+(2, 'Сельский', 'Село', 'С');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_time_form`
+--
+
+CREATE TABLE IF NOT EXISTS `db_time_form` (
+  `id_time_form` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL,
+  `sname` varchar(60) NOT NULL,
+  `abbr` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_time_form`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `db_time_form`
+--
+
+INSERT INTO `db_time_form` (`id_time_form`, `name`, `sname`, `abbr`) VALUES
+(1, 'Дневная', 'Дн', 'Д'),
+(2, 'Заочная', 'Заоч', 'З');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `db_users`
+--
+
+CREATE TABLE IF NOT EXISTS `db_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(60) NOT NULL,
+  `password` varchar(60) NOT NULL,
+  `realname` varchar(60) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `db_users`
+--
+
+INSERT INTO `db_users` (`id`, `username`, `password`, `realname`, `group_id`) VALUES
+(1, 'root', 'reboot', 'administrator', 1),
+(2, 'test', 'qwerty', 'Тестовый пользователь', 2);
